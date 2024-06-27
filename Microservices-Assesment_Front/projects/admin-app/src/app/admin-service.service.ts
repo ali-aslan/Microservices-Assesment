@@ -17,8 +17,8 @@ export interface Customer {
 })
 export class AdminServiceService {
 
-  private SaleCustomerUrl = 'https://localhost:44363/api/Customer';
-  private AdminOrderUrl = 'https://localhost:44366/api/Admin';
+  private SaleCustomerUrl = 'https://localhost:44387/api/Customer';
+  private AdminOrderUrl = 'https://localhost:44387/api/Admin';
 
 
   constructor(private http: HttpClient) { }

@@ -1,0 +1,159 @@
+{
+  "Routes": [
+    { ///IdentityWebApi Login
+      "DownstreamPathTemplate": "/api/Auth/Login",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44306
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Auth/Login",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    { ///SaleWebApi Customer
+      "UpstreamPathTemplate": "/api/Customer",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44363
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Customer"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Customer/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44363
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Customer/{id}"
+    },
+    { ///SaleWebApi Order
+      "UpstreamPathTemplate": "/api/Order",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44363
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Order"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Order/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44363
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Order/{id}"
+    },
+    { ///SaleWebApi Product
+      "UpstreamPathTemplate": "/api/Product",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44363
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Product"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Product/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44363
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Product/{id}"
+    },
+    { ///DealerWebApi Shipper
+      "UpstreamPathTemplate": "/api/Shipper",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44383
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Shipper"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Shipper/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44383
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Shipper/{id}"
+    },
+    { ///DealerWebApi Supplier
+      "UpstreamPathTemplate": "/api/Supplier",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44383
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Supplier"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Supplier/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44383
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Supplier/{id}"
+    },
+    { ///AdminWebApi Admin
+      "UpstreamPathTemplate": "/api/Admin",
+      "UpstreamHttpMethod": [ "Get" ],
+
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44366
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Admin"
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000"
+  }
+
+}

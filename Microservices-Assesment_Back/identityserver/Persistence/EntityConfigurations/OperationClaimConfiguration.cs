@@ -42,7 +42,6 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         }
     }
 
-#pragma warning disable S1854 // Unused assignments should be removed
     private IEnumerable<OperationClaim> getFeatureOperationClaims(int initialId)
     {
         int lastId = initialId;
@@ -101,5 +100,4 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         
         return featureOperationClaims;
     }
-#pragma warning restore S1854 // Unused assignments should be removed
 }

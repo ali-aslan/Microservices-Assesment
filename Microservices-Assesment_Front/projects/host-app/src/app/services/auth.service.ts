@@ -40,7 +40,7 @@ export class AuthService {
   }
 
   login(userInfo: { email: string, password: string }): Observable<string | boolean> {
-    return this.http.post<any>(`http://localhost:60805/api/Auth/Login`, {
+    return this.http.post<any>(`https://localhost:44387/api/Auth/Login`, {
       email: userInfo.email,
       password: userInfo.password,
       authenticatorCode: "string"

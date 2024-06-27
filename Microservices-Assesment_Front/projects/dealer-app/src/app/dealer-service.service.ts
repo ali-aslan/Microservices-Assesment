@@ -8,8 +8,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class DealerServiceService {
 
-  private DealerShipperUrl = 'https://localhost:44383/api/Shipper';
-  private DealerSupplierUrl = 'https://localhost:44383/api/Supplier';
+  private DealerShipperUrl = 'https://localhost:44387/api/Shipper';
+  private DealerSupplierUrl = 'https://localhost:44387/api/Supplier';
 
   constructor(private http: HttpClient) { }
 

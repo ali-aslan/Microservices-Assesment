@@ -11,7 +11,6 @@ using NArchitecture.Core.Mailing;
 using NArchitecture.Core.Persistence.WebApi;
 using NArchitecture.Core.Security.Encryption;
 using NArchitecture.Core.Security.JWT;
-using NArchitecture.Core.Security.WebApi.Swagger.Extensions;
 using Persistence;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using WebAPI;
@@ -61,7 +60,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors(opt =>
     opt.AddDefaultPolicy(p =>
     {
-        p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+        p.WithOrigins()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
     })
 );
 builder.Services.AddSwaggerGen(opt =>
@@ -80,7 +81,6 @@ builder.Services.AddSwaggerGen(opt =>
                 + "`Enter your token in the text input below.`"
         }
     );
-    opt.OperationFilter<BearerSecurityRequirementOperationFilter>();
 });
 
 WebApplication app = builder.Build();
@@ -101,16 +101,13 @@ if (app.Environment.IsDevelopment())
 app.UseDbMigrationApplier();
 
 app.UseAuthentication();
+
+app.UseCors("AllowSpecificOrigin");
+
 app.UseAuthorization();
 
 app.MapControllers();
 
-const string webApiConfigurationSection = "WebAPIConfiguration";
-WebApiConfiguration webApiConfiguration =
-    app.Configuration.GetSection(webApiConfigurationSection).Get<WebApiConfiguration>()
-    ?? throw new InvalidOperationException($"\"{webApiConfigurationSection}\" section cannot found in configuration.");
-
-app.UseCors(opt => opt.WithOrigins(webApiConfiguration.AllowedOrigins).AllowAnyHeader().AllowAnyMethod().AllowCredentials());
 
 app.UseResponseLocalization();
 

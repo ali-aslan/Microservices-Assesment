@@ -8,9 +8,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class MfeService {
 
-  private SaleCustomerUrl = 'https://localhost:44363/api/Customer';
-  private SaleProductUrl = 'https://localhost:44363/api/Product';
-  private SaleOrderUrl = 'https://localhost:44363/api/Order';
+  private SaleCustomerUrl = 'https://localhost:44387/api/Customer';
+  private SaleProductUrl = 'https://localhost:44387/api/Product';
+  private SaleOrderUrl = 'https://localhost:44387/api/Order';
 
   constructor(private http: HttpClient) { }
 
