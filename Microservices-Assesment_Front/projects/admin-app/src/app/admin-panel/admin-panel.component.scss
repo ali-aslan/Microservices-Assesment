@@ -1,0 +1,80 @@
+/* order.component.css */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
+  
+  .container {
+    max-width: 100%;
+    margin: 10px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .form-container {
+    margin-bottom: 20px;
+  }
+  
+  .form-wrapper {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  table th,
+  table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  .customer-green {
+    color: rgb(69, 230, 101); 
+  }
+  
+  .product-green {
+    color: rgb(32, 91, 58); 
+  }
+  
+  .supplier-blue {
+    color: rgb(107, 136, 221); 
+  }
+  
+  .shipper-blue {
+    color: rgb(26, 99, 234);
+  }
+  
+  .orange-text {
+    color: orange;
+  }
+  

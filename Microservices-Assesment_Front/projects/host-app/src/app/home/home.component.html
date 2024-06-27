@@ -1,0 +1,22 @@
+<header>
+  <div style="display: flex;align-items: center; margin-bottom: 10px;">
+    <div style="margin-right: 20px;">{{ UserRole }} Welcome</div>
+
+    <button *ngIf="UserRole === 'Admin' || UserRole === 'Sale'" mat-raised-button color="accent" outerLinkActive="active" routerLink="./todo-list" style="margin-right: 5px;">Dashboard</button>
+
+    <button  mat-raised-button color="dark" routerLink="./sale-panel" routerLinkActive="active" style="margin-right: 5px;">Sale Panel</button>
+
+    <button *ngIf="UserRole === 'Admin'" mat-raised-button color="accent" routerLink="./admin-panel" routerLinkActive="active" style="margin-right: 5px;">Admin Panel</button>
+
+    <button *ngIf="UserRole === 'Admin' || UserRole === 'Dealer'" mat-raised-button color="accent" routerLink="./dealer-panel"  routerLinkActive="active">Dealer Panel</button>
+
+    <button mat-raised-button color="accent" (click)="logout()" style="margin-left: 5px;">Exit</button>
+  </div>
+</header>
+  
+<div *ngIf="isLoading | async">
+    <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+  </div>
+
+<router-outlet></router-outlet>
+

@@ -1,0 +1,146 @@
+<body>
+    <div class="container">
+      <!-- Shippper Form -->
+      <div class="form-container">
+        <div class="form-wrapper">
+          <h2>Shipper Data Input</h2>
+          <form #customerForm="ngForm" (ngSubmit)="ShipperSubmit(shipper)">
+            <label> Name:</label>
+            <input [(ngModel)]="shipper.name" name="Name">
+            <label>Phone:</label>
+            <input [(ngModel)]="shipper.phone" name="phone">
+            <button type="submit">Submit</button>
+          </form>
+          <div class="form-container">
+            <div class="form-wrapper">
+              <h2>Shipper List</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Shipper ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="shipperPageData">
+                  <ng-container *ngFor="let ship of shipperPageData.items; let last = last">
+                    <tr>
+                      <td>{{ ship.id }}</td>
+                      <td>{{ ship.name }}</td>
+                      <td>{{ ship.phone }}</td>
+                    </tr>
+                    <tr *ngIf="!last">
+                      <td colspan="5" class="separator-row">-----------------------------</td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+              <button (click)="getShippers()">Fetch Shippers</button>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Get Order by Customer ID Form -->
+        <div class="form-container">
+          <div class="form-wrapper">
+            <h2>Get Shipper by ID</h2>
+            <form (ngSubmit)="getShipperById(shipperGetById.shipperID)">
+              <label>Shipper ID:</label>
+              <input [(ngModel)]="shipperGetById.shipperID" name="shipperID">
+              <button type="submit">Submit</button>
+            </form>
+            <table *ngIf="shipperById">
+              <thead>
+                <tr>
+                  <th>Shipper ID</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ shipperById.id }}</td>
+                  <td>{{ shipperById.name }}</td>
+                  <td>{{ shipperById.phone }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+          <!-- Supplier Form -->
+          <div class="form-container">
+            <div class="form-wrapper">
+              <h2>Supplier Data Input</h2>
+              <form #customerForm="ngForm" (ngSubmit)="SupplierSubmit(supplier)">
+                <label> Name:</label>
+                <input [(ngModel)]="supplier.name" name="Name">
+                <label>Contact Name:</label>
+                <input [(ngModel)]="supplier.contactName" name="ContactName">
+                <label>Phone:</label>
+                <input [(ngModel)]="supplier.phone" name="phone">
+                <button type="submit">Submit</button>
+              </form>
+              <div class="form-container">
+                <div class="form-wrapper">
+                  <h2>Supplier List</h2>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Supplier ID</th>
+                        <th>Name</th>
+                        <th>Contact Name</th>
+                        <th>Phone</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngIf="supplierPageData">
+                      <ng-container *ngFor="let ship of supplierPageData.items; let last = last">
+                        <tr>
+                          <td>{{ ship.id }}</td>
+                          <td>{{ ship.name }}</td>
+                          <td>{{ ship.phone }}</td>
+                          <td>{{ ship.contactName }}</td>
+                        </tr>
+                        <tr *ngIf="!last">
+                          <td colspan="5" class="separator-row">-----------------------------</td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </table>
+                  <button (click)="getSuppliers()">Fetch Suppliers</button>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Get Order by Customer ID Form -->
+            <div class="form-container">
+              <div class="form-wrapper">
+                <h2>Get Supplier by ID</h2>
+                <form (ngSubmit)="getSupplierById(supplierGetById.supplierID)">
+                  <label>Supplier ID:</label>
+                  <input [(ngModel)]="supplierGetById.supplierID" name="supplierID">
+                  <button type="submit">Submit</button>
+                </form>
+                <table *ngIf="supplierById">
+                  <thead>
+                    <tr>
+                      <th>Supplier ID</th>
+                      <th>Name</th>
+                      <th>Phone</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{ supplierById.id }}</td>
+                      <td>{{ supplierById.name }}</td>
+                      <td>{{ supplierById.phone }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+    </div>
+</body>

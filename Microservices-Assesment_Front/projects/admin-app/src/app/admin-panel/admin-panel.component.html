@@ -1,0 +1,57 @@
+<body>
+    <div class="container">
+      <div class="form-container">
+        <div class="form-wrapper">
+          <h2>Order</h2>
+          <table>
+            <thead>
+              <tr>
+                <th class="customer-green">Order ID</th>
+                <th class="customer-green">Customer Name</th>
+                <th class="customer-green">Customer Email</th>
+                <th class="customer-green">Customer Phone</th>
+  
+                <th class="product-green">Product Name</th>
+                <th class="product-green">Product Category</th>
+                <th class="product-green">Product Price</th>
+                <th class="product-green">Product Stock Quantity</th>
+  
+                <th class="supplier-blue">Supplier Name</th>
+                <th class="supplier-blue">Supplier Contact Name</th>
+                <th class="supplier-blue">Supplier Phone</th>
+  
+                <th class="shipper-blue">Shipper Name</th>
+                <th class="shipper-blue">Shipper Phone</th>
+  
+                <th class="orange-text">Seller Email</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="orders">
+              <tr *ngFor="let order of orders">
+                <td>{{ order.id }}</td>
+                <td>{{ order.customer.name }}</td>
+                <td>{{ order.customer.email }}</td>
+                <td>{{ order.customer.phone }}</td>
+  
+                <td>{{ order.product.name }}</td>
+                <td>{{ order.product.categoryName }}</td>
+                <td>{{ order.product.price }}</td>
+                <td>{{ order.product.stockQuantity }}</td>
+  
+                <td>{{ order.supplier.name }}</td>
+                <td>{{ order.supplier.contactName }}</td>
+                <td>{{ order.supplier.phone }}</td>
+  
+                <td>{{ order.shipper.name }}</td>
+                <td>{{ order.shipper.phone }}</td>
+  
+                <td>{{ order.seller.email }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <button (click)="fetchOrders()">Fetch Orders</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  

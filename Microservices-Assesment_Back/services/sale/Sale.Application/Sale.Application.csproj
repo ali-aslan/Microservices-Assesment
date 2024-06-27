@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Customers\Commands\Update\" />
+    <Folder Include="Features\Orders\Commands\Update\" />
+    <Folder Include="Features\Orders\Constants\" />
+    <Folder Include="Features\Orders\Rules\" />
+    <Folder Include="Features\Products\Commands\Delete\" />
+    <Folder Include="Features\Products\Commands\Update\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.2" />
+    <PackageReference Include="MassTransit" Version="8.2.3" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
+    <ProjectReference Include="..\..\..\shared\Contracts\Contracts.csproj" />
+    <ProjectReference Include="..\..\..\shared\Core.Application\Core.Application.csproj" />
+    <ProjectReference Include="..\..\..\shared\Core.Persistence\Core.Persistence.csproj" />
+    <ProjectReference Include="..\Sale.Domain\Sale.Domain.csproj" />
+
+  </ItemGroup>
+
+</Project>

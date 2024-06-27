@@ -1,0 +1,81 @@
+/* Stil dosyası: styles.css veya istediğiniz bir ad */
+
+/* Genel stiller */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa; /* Arka plan rengi */
+  color: #343a40; /* Metin rengi */
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px; /* Container'ın maksimum genişliği */
+  margin: auto; /* Ortalamak için otomatik margin */
+  padding: 20px; /* Container içi padding */
+}
+
+.card {
+  border-radius: 10px; /* Kartın köşe yuvarlama */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Gölgelendirme */
+}
+
+.card-body {
+  padding: 30px; /* Kart içi padding */
+}
+
+.text-center {
+  text-align: center; /* Metni ortala */
+}
+
+.bg-dark {
+  background-color: #343a40; /* Koyu arka plan rengi */
+  color: #fff; /* Beyaz metin rengi */
+  padding: 20px; /* Arka plan içi padding */
+  border-radius: 10px; /* Arka plan köşe yuvarlama */
+}
+
+.form-outline {
+  margin-bottom: 20px; /* Alt boşluk */
+}
+
+.form-outline input {
+  width: 100%; /* Input genişliği */
+  padding: 12px; /* Input içi padding */
+  border: 1px solid #ced4da; /* Input çerçeve rengi */
+  border-radius: 5px; /* Input köşe yuvarlama */
+}
+
+.form-label {
+  position: absolute; /* Mutlak konumlandırma */
+  top: 12px; /* Yukarıdan boşluk */
+  left: 15px; /* Soldan boşluk */
+  color: #6c757d; /* Gri metin rengi */
+  transition: 0.2s ease-out; /* Geçiş efekti */
+  pointer-events: none; /* Input üzerinde etkileşimi engelle */
+}
+
+.form-outline input:focus + .form-label,
+.form-outline input:valid + .form-label {
+  top: 0; /* Odaklandığında veya geçerli olduğunda yukarı kaydır */
+  font-size: 12px; /* Küçük font boyutu */
+  color: #ffc107; /* Sarı renk */
+}
+
+.text-danger {
+  color: #dc3545; /* Kırmızı hata mesajı rengi */
+}
+
+.btn-outline-light {
+  color: #fff; /* Beyaz buton metin rengi */
+  background-color: #007bff; /* Mavi buton arka plan rengi */
+  border-color: #007bff; /* Mavi buton çerçeve rengi */
+  padding: 12px 20px; /* Buton içi padding */
+  border-radius: 5px; /* Buton köşe yuvarlama */
+}
+
+.btn-outline-light:hover {
+  background-color: #0056b3; /* Mavi buton üzerine gelindiğinde arka plan rengi */
+  color: #fff; /* Mavi buton üzerine gelindiğinde metin rengi */
+  transition: background-color 0.3s ease-out; /* Geçiş efekti */
+}

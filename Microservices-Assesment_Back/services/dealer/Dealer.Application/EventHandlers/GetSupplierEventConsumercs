@@ -1,0 +1,41 @@
+﻿using AutoMapper;
+using Contracts.Request;
+using Contracts.Responses;
+using Dealer.Application.Services.Repositories;
+using MassTransit;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Dealer.Application.EventHandlers;
+
+public class GetSupplierEventHandler : IConsumer<SupplierRequest>
+{
+    private readonly ISupplierRepository _supplierRepository;
+    private readonly IMapper _mapper;
+
+    public GetSupplierEventHandler(ISupplierRepository supplierRepository, IMapper mapper)
+    {
+        _supplierRepository = supplierRepository;
+        _mapper = mapper;
+    }
+
+    public async Task Consume(ConsumeContext<SupplierRequest> context)
+    {
+        try
+        {
+            var supplier = await _supplierRepository.GetAsync(s => s.Id == context.Message.Id);
+            var mappedShipper = _mapper.Map<SupplierResponse>(supplier);
+            await context.RespondAsync<SupplierResponse>(supplier);
+        }
+        catch (Exception e)
+        {
+
+            throw;
+        }
+    }
+
+ 
+}
