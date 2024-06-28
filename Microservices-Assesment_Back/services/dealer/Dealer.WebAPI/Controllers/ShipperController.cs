@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Dealer.Application.Features.Shippers.Commands.Create;
 using Dealer.Application.Features.Shippers.Queries.GetByList;
 using Dealer.Application.Features.Shippers.Queries.GetById;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Dealer.WebAPI.Controllers;
 
@@ -13,6 +14,7 @@ namespace Dealer.WebAPI.Controllers;
 public class ShipperController : BaseController
 {
     [HttpPost]
+    [Authorize(Roles = "Admin,Dealer")]
     public async Task<IActionResult> Add([FromBody] CreateShipperCommand createShipperCommand)
     {
         CreatedShipperResponse res = await Mediator.Send(createShipperCommand);
@@ -20,6 +22,7 @@ public class ShipperController : BaseController
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin,Dealer")]
     public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
 
@@ -29,6 +32,7 @@ public class ShipperController : BaseController
     }
 
     [HttpGet("{id}")]
+    [Authorize(Roles = "Admin,Dealer")]
     public async Task<IActionResult> GetById([FromRoute] Guid id)
     {
         GetByIdShipperQuery getByIdShipperQuery = new() { Id = id };

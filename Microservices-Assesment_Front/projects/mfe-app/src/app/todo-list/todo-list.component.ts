@@ -71,7 +71,11 @@ export class TodoListComponent {
         alert('customer get successfully!');
       },
       (error) => {
-        alert('customer not get.'+ error.error);
+        if (error.status === 401 || error.status === 403) {
+          alert('Unauthorized access. Please log in again.');
+        } else {
+          alert('Failed to retrieve customers: ' + error.error);
+        }
       }
     );
     }
@@ -81,8 +85,12 @@ export class TodoListComponent {
         response => {
           alert('customer deleted successfully!');
         },
-        error => {
+        (error) => {
+          if (error.status === 401 || error.status === 403) {
+            alert('Unauthorized access. Please log in again.');
+          } else {
           alert('Customer not deleted.'+ error.error);
+          }
         }
       );
     } 
@@ -114,8 +122,12 @@ export class TodoListComponent {
         alert('Product List get successfully!');
       },
       (error) => {
+        if (error.status === 401 || error.status === 403) {
+          alert('Unauthorized access. Please log in again.');
+        } else {
         alert('Product List not get.'+ error.error);
       }
+    }
     );
     this.cdr.detectChanges();
     }

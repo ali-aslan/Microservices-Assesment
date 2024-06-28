@@ -1,5 +1,6 @@
 ﻿using Core.Application.Requests;
 using Core.Application.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sale.Application.Features.Customers.Commands.Create;
 using Sale.Application.Features.Customers.Commands.Delete;
@@ -13,6 +14,7 @@ namespace Sale.WebAPI.Controllers
     public class CustomerController:BaseController
     {
         [HttpPost]
+        [Authorize(Roles = "Admin,Sale")]
         public async Task<IActionResult> Add([FromBody] CreateCustomerCommand createCustomerCommand)
         {
             CreatedCustomerResponse res = await Mediator.Send(createCustomerCommand);
@@ -20,6 +22,7 @@ namespace Sale.WebAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Sale")]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
 
@@ -29,6 +32,7 @@ namespace Sale.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin,Sale")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             GetByIdCustomerQuery getByIdCustomerQuery = new() { Id = id };
@@ -39,6 +43,7 @@ namespace Sale.WebAPI.Controllers
 
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin,Sale")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             DeleteCustomerCommand deleteCustomerCommand = new() { Id = id };

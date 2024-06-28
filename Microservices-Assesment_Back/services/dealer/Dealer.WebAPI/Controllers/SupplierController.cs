@@ -6,6 +6,7 @@ using Dealer.Application.Features.Shippers.Queries.GetByList;
 using Dealer.Application.Features.Shippers.Queries.GetById;
 using Dealer.Application.Features.Suppliers.Queries.GetByList;
 using Dealer.Application.Features.Suppliers.Queries.GetById;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Dealer.WebAPI.Controllers;
 
@@ -15,6 +16,7 @@ namespace Dealer.WebAPI.Controllers;
 public class SupplierController : BaseController
 {
     [HttpPost]
+    [Authorize(Roles = "Admin,Dealer")]
     public async Task<IActionResult> Add([FromBody] CreateSupplierCommand createsupplierCommand)
     {
         CreatedSupplierResponse res = await Mediator.Send(createsupplierCommand);
@@ -22,6 +24,7 @@ public class SupplierController : BaseController
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin,Dealer")]
     public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
 
@@ -31,6 +34,7 @@ public class SupplierController : BaseController
     }
 
     [HttpGet("{id}")]
+    [Authorize(Roles = "Admin,Dealer")]
     public async Task<IActionResult> GetById([FromRoute] Guid id)
     {
         GetByIdSupplierQuery getByIdSupplierQuery = new() { Id = id };

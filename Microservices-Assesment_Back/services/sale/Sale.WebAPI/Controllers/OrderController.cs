@@ -1,5 +1,6 @@
 ﻿using Core.Application.Requests;
 using Core.Application.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sale.Application.Features.Orders.Commands.Create;
 using Sale.Application.Features.Orders.Commands.Delete;
@@ -14,6 +15,7 @@ namespace Sale.WebAPI.Controllers
     public class OrderController:BaseController
     {
         [HttpPost]
+        [Authorize(Roles = "Admin,Sale")]
         public async Task<IActionResult> Add([FromBody] CreateOrderCommand createOrderCommand)
         {
             CreatedOrderResponse res = await Mediator.Send(createOrderCommand);
@@ -21,6 +23,7 @@ namespace Sale.WebAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Sale")]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
 
@@ -30,6 +33,7 @@ namespace Sale.WebAPI.Controllers
         }
 
         [HttpGet("Seller/{SellerId}")]
+        [Authorize(Roles = "Admin,Sale")]
         public async Task<IActionResult> GetBySellerId([FromRoute] Guid SellerId)
         {
             GetOrderBySellerIdQuery getOrderBySellerIdQuery  = new() { SellerId = SellerId };
@@ -39,6 +43,7 @@ namespace Sale.WebAPI.Controllers
         }
 
         [HttpGet("Customer/{CustomerId}")]
+        [Authorize(Roles = "Admin,Sale")]
         public async Task<IActionResult> GetByCustomerId([FromRoute] Guid CustomerId)
         {
             GetOrderByCustomerIdQuery getOrderByCustomerIdQuery = new() { CustomerId = CustomerId };
@@ -49,6 +54,7 @@ namespace Sale.WebAPI.Controllers
 
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin,Sale")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             DeleteOrderCommand deleteOrderCommand = new() { Id = id };

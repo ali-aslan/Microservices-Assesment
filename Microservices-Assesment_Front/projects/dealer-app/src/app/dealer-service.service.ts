@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Shipper, Supplier } from './dealer-panel/dealer-panel.component';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +13,20 @@ export class DealerServiceService {
 
   constructor(private http: HttpClient) { }
 
+  getToken() {
+    return localStorage.getItem('token')
+  }
+
+
   //#region Supplier
 
   addSupplier(supplier: Supplier): Observable<Supplier> {
-    return this.http.post<Supplier>(this.DealerSupplierUrl, supplier);
+
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.getToken()
+    });
+    
+    return this.http.post<Supplier>(this.DealerSupplierUrl, supplier, { headers });
   }
 
   getSuppliers(pageIndex: number, pageSize: number): Observable<Supplier[]> {
@@ -24,11 +34,21 @@ export class DealerServiceService {
       .set('PageIndex', pageIndex.toString())
       .set('PageSize', pageSize.toString());
 
-      return this.http.get<Supplier[]>(this.DealerSupplierUrl, { params });
+      
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.getToken()
+    });
+
+      return this.http.get<Supplier[]>(this.DealerSupplierUrl, { params, headers });
   }
 
   getSupplierById(id: string): Observable<Supplier[]> {
-    return this.http.get<Supplier[]>(`${this.DealerSupplierUrl}/${id}`);
+    
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.getToken()
+    });
+
+    return this.http.get<Supplier[]>(`${this.DealerSupplierUrl}/${id}`, { headers });
   }
   //#endregion
 
@@ -36,7 +56,11 @@ export class DealerServiceService {
   //#region Shipper
 
   addShipper(Shipper: Shipper): Observable<Shipper> {
-    return this.http.post<Shipper>(this.DealerShipperUrl, Shipper);
+    
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.getToken()
+    });
+    return this.http.post<Shipper>(this.DealerShipperUrl, Shipper , { headers });
   }
 
   getShippers(pageIndex: number, pageSize: number): Observable<Shipper[]> {
@@ -44,11 +68,20 @@ export class DealerServiceService {
       .set('PageIndex', pageIndex.toString())
       .set('PageSize', pageSize.toString());
 
-      return this.http.get<Shipper[]>(this.DealerShipperUrl, { params });
+      
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.getToken()
+    });
+
+      return this.http.get<Shipper[]>(this.DealerShipperUrl, { params,headers });
   }
 
   getShipperById(id: string): Observable<Shipper[]> {
-    return this.http.get<Shipper[]>(`${this.DealerShipperUrl}/${id}`);
+    
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.getToken()
+    });
+    return this.http.get<Shipper[]>(`${this.DealerShipperUrl}/${id}`, { headers });
   }
   //#endregion
 }

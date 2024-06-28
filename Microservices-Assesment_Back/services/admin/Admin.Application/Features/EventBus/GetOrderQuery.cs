@@ -13,32 +13,26 @@ public class GetOrderQuery : IRequest<GetOrderResponse>
 
 }
 
-public class GetOrderQueryHandler : IRequestHandler<GetOrderQuery, GetOrderResponse>
+public class GetOrderQueryHandler(
+        IMapper mapper,
+        IRequestClient<ShipperRequest> clientShipper,
+        IRequestClient<SupplierRequest> clientSupplier,
+        IRequestClient<OrderRequest> clientOrder,
+        IRequestClient<SellerRequest> clientSeller
+    ) : IRequestHandler<GetOrderQuery, GetOrderResponse>
 {
-    public readonly IMapper _mapper;
-    private readonly IRequestClient<ShipperRequest> _clientShipper;
-    private readonly IRequestClient<SupplierRequest> _clientSupplier;
-    private readonly IRequestClient<OrderRequest> _clientOrder;
-    private readonly IRequestClient<SellerRequest> _clientSeller;
+    public readonly IMapper _mapper = mapper;
+    private readonly IRequestClient<ShipperRequest> _clientShipper = clientShipper;
+    private readonly IRequestClient<SupplierRequest> _clientSupplier = clientSupplier;
+    private readonly IRequestClient<OrderRequest> _clientOrder = clientOrder;
+    private readonly IRequestClient<SellerRequest> _clientSeller = clientSeller;
 
-    public GetOrderQueryHandler(
-        IMapper mapper, 
-        IRequestClient<ShipperRequest> clientShipper, 
-        IRequestClient<SupplierRequest> clientSupplier, 
-        IRequestClient<OrderRequest> clientOrder, 
-        IRequestClient<SellerRequest> clientSeller)
-    {
-        _mapper = mapper;
-        _clientShipper = clientShipper;
-        _clientSupplier = clientSupplier;
-        _clientOrder = clientOrder;
-        _clientSeller = clientSeller;
-    }
+
 
     public async Task<GetOrderResponse> Handle(GetOrderQuery request, CancellationToken cancellationToken)
     {
 
-        var OrderId = new Guid();
+        Guid OrderId = new();
         var orderResponse = await _clientOrder.GetResponse<OrderResponse>(new { OrderId }, cancellationToken);
 
 

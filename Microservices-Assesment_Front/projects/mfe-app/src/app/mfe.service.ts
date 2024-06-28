@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Customer, Order, Product } from './todo-list/todo-list.component';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +14,17 @@ export class MfeService {
 
   constructor(private http: HttpClient) { }
 
+  getToken() {
+    return localStorage.getItem('token')
+  }
 
   //#region Customer
   addCustomer(customer: Customer): Observable<Customer> {
-    return this.http.post<Customer>(this.SaleCustomerUrl, customer);
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.getToken()
+    });
+
+    return this.http.post<Customer>(this.SaleCustomerUrl, customer, { headers });
   }
 
   getCustomers(pageIndex: number, pageSize: number): Observable<Customer[]> {
@@ -25,18 +32,32 @@ export class MfeService {
       .set('PageIndex', pageIndex.toString())
       .set('PageSize', pageSize.toString());
 
-    return this.http.get<Customer[]>(this.SaleCustomerUrl, { params });
+      let headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + this.getToken()
+      });
+
+
+    return this.http.get<Customer[]>(this.SaleCustomerUrl, { params,headers });
   }
 
   deleteCustomerById(id: string): Observable<any> {
-    return this.http.delete(`${this.SaleCustomerUrl}/${id}`);
+
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.getToken()
+    });
+
+    return this.http.delete(`${this.SaleCustomerUrl}/${id}`, { headers });
   }
   //#endregion
 
 
   //#region Product
   addProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.SaleProductUrl, product);
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.getToken()
+    });
+
+    return this.http.post<Product>(this.SaleProductUrl, product, { headers });
   }
 
   getProducts(pageIndex: number, pageSize: number): Observable<Product[]> {
@@ -44,18 +65,34 @@ export class MfeService {
       .set('PageIndex', pageIndex.toString())
       .set('PageSize', pageSize.toString());
 
-      return this.http.get<Product[]>(this.SaleProductUrl, { params });
+      let headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + this.getToken()
+      });
+
+
+      return this.http.get<Product[]>(this.SaleProductUrl, { params,headers });
   }
 
   deleteProductById(id: string): Observable<any> {
-    return this.http.delete(`${this.SaleProductUrl}/${id}`);
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.getToken()
+    });
+
+    
+    return this.http.delete(`${this.SaleProductUrl}/${id}`, { headers });
   }
   //#endregion
 
 
  //#region Order
  addOrder(order: Order): Observable<Order> {
-  return this.http.post<Order>(this.SaleOrderUrl, order);
+
+  let headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.getToken()
+  });
+
+  
+  return this.http.post<Order>(this.SaleOrderUrl, order , { headers });
 }
 
 getOrders(pageIndex: number, pageSize: number): Observable<Order[]> {
@@ -63,11 +100,19 @@ getOrders(pageIndex: number, pageSize: number): Observable<Order[]> {
     .set('PageIndex', pageIndex.toString())
     .set('PageSize', pageSize.toString());
 
-    return this.http.get<Order[]>(this.SaleOrderUrl, { params });
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.getToken()
+    });
+
+    return this.http.get<Order[]>(this.SaleOrderUrl, { params,headers });
 }
 
 getOrderByCustomerId(id: string): Observable<Order[]> {
-  return this.http.get<Order[]>(`${this.SaleOrderUrl}/Customer/${id}`);
+  let headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.getToken()
+  });
+
+  return this.http.get<Order[]>(`${this.SaleOrderUrl}/Customer/${id}` , { headers });
 }
 //#endregion
 }

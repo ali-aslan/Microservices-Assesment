@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Order } from './admin-panel/admin-panel.component';
 
@@ -23,8 +23,17 @@ export class AdminServiceService {
 
   constructor(private http: HttpClient) { }
 
+  getToken() {
+    return localStorage.getItem('token')
+  }
+
   addCustomer(customer: Customer): Observable<Customer> {
-    return this.http.post<Customer>(this.SaleCustomerUrl, customer);
+
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.getToken()
+    });
+
+    return this.http.post<Customer>(this.SaleCustomerUrl, customer, { headers });
   }
 
   getCustomers(pageIndex: number, pageSize: number): Observable<Customer[]> {
@@ -32,10 +41,18 @@ export class AdminServiceService {
       .set('PageIndex', pageIndex.toString())
       .set('PageSize', pageSize.toString());
 
-    return this.http.get<Customer[]>(this.SaleCustomerUrl, { params });
+      let headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + this.getToken()
+      });
+
+    return this.http.get<Customer[]>(this.SaleCustomerUrl, { params, headers });
   }
 
   fetchOrders(): Observable<Order> {
-    return this.http.get<Order>(this.AdminOrderUrl);
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.getToken()
+    });
+
+    return this.http.get<Order>(this.AdminOrderUrl, { headers });
   }
 }

@@ -2,6 +2,9 @@ using Core.CrossCuttingConcerns.Exceptions.Extensions;
 using Dealer.Application;
 using Dealer.Persistence;
 using Dealer.Infrastructure;
+using Core.Security.Encryption;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +31,22 @@ builder.Services.AddCors(options =>
                    .AllowAnyMethod();
         });
 });
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)//Dealer 
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidAudience = "microservices@test.com",
+            ValidIssuer = "mehmet.ali.aslan.abc@gmail.com",
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey("StrongAndSecretKeyStrongAndSecretKeyStrongAndSecretKeyStrongAndSecretKey")
+        };
+    });
+
 
 
 builder.Services.AddEndpointsApiExplorer();

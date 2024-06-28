@@ -35,8 +35,7 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 
 const string tokenOptionsConfigurationSection = "TokenOptions";
-TokenOptions tokenOptions =
-    builder.Configuration.GetSection(tokenOptionsConfigurationSection).Get<TokenOptions>()
+TokenOptions tokenOptions =  builder.Configuration.GetSection(tokenOptionsConfigurationSection).Get<TokenOptions>()
     ?? throw new InvalidOperationException($"\"{tokenOptionsConfigurationSection}\" section cannot found in configuration.");
 builder
     .Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
