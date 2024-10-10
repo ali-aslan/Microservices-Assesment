@@ -17,7 +17,7 @@ namespace Sale.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.6")
+                .HasAnnotation("ProductVersion", "7.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -60,6 +60,48 @@ namespace Sale.Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("Customers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("c9bf9e57-1685-4c89-bdcf-5698f00a4d78"),
+                            CreatedDate = new DateTime(2024, 10, 10, 21, 18, 25, 611, DateTimeKind.Local).AddTicks(4314),
+                            Email = "customer_one@test.com",
+                            Name = "John Doe",
+                            Phone = "+1234567890"
+                        },
+                        new
+                        {
+                            Id = new Guid("1d44b7f4-ba6d-4f7a-a5a3-8ae3c9aeb5a1"),
+                            CreatedDate = new DateTime(2024, 10, 10, 21, 18, 25, 611, DateTimeKind.Local).AddTicks(4371),
+                            Email = "customer_two@test.com",
+                            Name = "Jane Smith",
+                            Phone = "+1987654321"
+                        },
+                        new
+                        {
+                            Id = new Guid("54813738-73ac-4efc-be5d-89d07cd4c337"),
+                            CreatedDate = new DateTime(2024, 10, 10, 21, 18, 25, 611, DateTimeKind.Local).AddTicks(4614),
+                            Email = "alice.johnson@example.com",
+                            Name = "Alice Johnson",
+                            Phone = "+1098765432"
+                        },
+                        new
+                        {
+                            Id = new Guid("a2abb0c3-3fe6-4d27-917f-27406251c503"),
+                            CreatedDate = new DateTime(2024, 10, 10, 21, 18, 25, 611, DateTimeKind.Local).AddTicks(4618),
+                            Email = "bob.williams@example.com",
+                            Name = "Bob Williams",
+                            Phone = "+1122334455"
+                        },
+                        new
+                        {
+                            Id = new Guid("0cd23974-eb16-484a-9c5c-56287c63c64f"),
+                            CreatedDate = new DateTime(2024, 10, 10, 21, 18, 25, 611, DateTimeKind.Local).AddTicks(4620),
+                            Email = "charlie.brown@example.com",
+                            Name = "Charlie Brown",
+                            Phone = "+1223344556"
+                        });
                 });
 
             modelBuilder.Entity("Sale.Domain.Entities.Order", b =>
@@ -108,6 +150,28 @@ namespace Sale.Persistence.Migrations
                     b.HasIndex("ProductID");
 
                     b.ToTable("Orders", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("06ef57c5-8e9b-4992-be4e-6027183956e4"),
+                            CreatedDate = new DateTime(2024, 10, 10, 21, 18, 25, 612, DateTimeKind.Local).AddTicks(4224),
+                            CustomerID = new Guid("c9bf9e57-1685-4c89-bdcf-5698f00a4d78"),
+                            ProductID = new Guid("6f9619ff-8b86-d011-b42d-00cf4fc964ff"),
+                            SellerID = new Guid("f65a5e9f-621d-4e5c-91f9-0a8e357929b2"),
+                            ShipperID = new Guid("b19b03b2-fe50-4c30-beac-41a3c648e721"),
+                            SupplierID = new Guid("5d7ddf1b-1f2f-4a72-ac0a-0106e2912b34")
+                        },
+                        new
+                        {
+                            Id = new Guid("a000ce5a-b1c6-4a80-a607-88903b7f5f3c"),
+                            CreatedDate = new DateTime(2024, 10, 10, 21, 18, 25, 612, DateTimeKind.Local).AddTicks(4242),
+                            CustomerID = new Guid("1d44b7f4-ba6d-4f7a-a5a3-8ae3c9aeb5a1"),
+                            ProductID = new Guid("3f2504e0-4f89-11d3-9a0c-0305e82c3301"),
+                            SellerID = new Guid("f65a5e9f-621d-4e5c-91f9-0a8e357929b2"),
+                            ShipperID = new Guid("a5a07aab-706b-4a30-97a5-25b0d37bd6ab"),
+                            SupplierID = new Guid("e462e1a5-b32c-44d3-a74b-fa60c1e76d89")
+                        });
                 });
 
             modelBuilder.Entity("Sale.Domain.Entities.Product", b =>
@@ -150,6 +214,53 @@ namespace Sale.Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("Products", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("6f9619ff-8b86-d011-b42d-00cf4fc964ff"),
+                            CategoryName = "Electronics",
+                            CreatedDate = new DateTime(2024, 10, 10, 21, 18, 25, 612, DateTimeKind.Local).AddTicks(9303),
+                            Name = "SmartWatch Pro",
+                            Price = 199.99m,
+                            StockQuantity = 150
+                        },
+                        new
+                        {
+                            Id = new Guid("3f2504e0-4f89-11d3-9a0c-0305e82c3301"),
+                            CategoryName = "Automotive",
+                            CreatedDate = new DateTime(2024, 10, 10, 21, 18, 25, 612, DateTimeKind.Local).AddTicks(9314),
+                            Name = "UltraGrip 5000 Tires",
+                            Price = 149.95m,
+                            StockQuantity = 300
+                        },
+                        new
+                        {
+                            Id = new Guid("7fdf433f-a6b6-4cd8-b801-9f56e197c633"),
+                            CategoryName = "Kitchen Appliances",
+                            CreatedDate = new DateTime(2024, 10, 10, 21, 18, 25, 612, DateTimeKind.Local).AddTicks(9327),
+                            Name = "HealthMaster Blender",
+                            Price = 79.99m,
+                            StockQuantity = 100
+                        },
+                        new
+                        {
+                            Id = new Guid("e1f28cb7-3b18-4165-ad02-2b036e30d0ac"),
+                            CategoryName = "Outdoor Gear",
+                            CreatedDate = new DateTime(2024, 10, 10, 21, 18, 25, 612, DateTimeKind.Local).AddTicks(9330),
+                            Name = "Adventure Backpack",
+                            Price = 129.50m,
+                            StockQuantity = 75
+                        },
+                        new
+                        {
+                            Id = new Guid("6dcb4b0c-f3d8-4725-af41-9ae757ef13e1"),
+                            CategoryName = "Photography",
+                            CreatedDate = new DateTime(2024, 10, 10, 21, 18, 25, 612, DateTimeKind.Local).AddTicks(9333),
+                            Name = "Professional DSLR Camera",
+                            Price = 1499.99m,
+                            StockQuantity = 50
+                        });
                 });
 
             modelBuilder.Entity("Sale.Domain.Entities.Order", b =>

@@ -28,7 +28,4 @@ public class Customer:Entity<Guid>
         Phone = phone;
     }
 
-
-
-
 }

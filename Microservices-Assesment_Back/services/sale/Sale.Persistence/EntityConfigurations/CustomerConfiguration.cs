@@ -31,7 +31,68 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
 
 
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
+
+        builder.HasData(_seeds);
     }
 
+    private IEnumerable<Customer> _seeds
+    {
+        get
+        {
+            return new List<Customer>
+            {
+                new Customer
+                {
+                    Id = Guid.Parse("C9BF9E57-1685-4C89-BDCF-5698F00A4D78"), // Customer 1
+                    Name = "John Doe",
+                    Email = "customer_one@test.com",
+                    Phone = "+1234567890",
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = null,
+                    DeletedDate = null
+                },
+                new Customer
+                {
+                    Id = Guid.Parse("1D44B7F4-BA6D-4F7A-A5A3-8AE3C9AEB5A1"), // Customer 2
+                    Name = "Jane Smith",
+                    Email = "customer_two@test.com",
+                    Phone = "+1987654321",
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = null,
+                    DeletedDate = null
+                },
+                new Customer
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Alice Johnson",
+                    Email = "alice.johnson@example.com",
+                    Phone = "+1098765432",
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = null,
+                    DeletedDate = null
+                },
+                new Customer
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Bob Williams",
+                    Email = "bob.williams@example.com",
+                    Phone = "+1122334455",
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = null,
+                    DeletedDate = null
+                },
+                new Customer
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Charlie Brown",
+                    Email = "charlie.brown@example.com",
+                    Phone = "+1223344556",
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = null,
+                    DeletedDate = null
+                }
+            };
+        }
+    }
 
 }

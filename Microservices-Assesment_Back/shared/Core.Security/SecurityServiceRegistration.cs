@@ -12,11 +12,10 @@ namespace Core.Security;
 
 public static class SecurityServiceRegistration
 {
-    public static IServiceCollection AddSecurityServices(this IServiceCollection services)
+    public static IServiceCollection AddSecurityServices<TUserId, TOperationClaimId, TRefreshTokenId>(this IServiceCollection services, TokenOptions tokenOptions)
     {
-        services.AddScoped<ITokenHelper, JwtHelper>();
-        //services.AddScoped<IEmailAuthenticatorHelper, EmailAuthenticatorHelper>();
-        services.AddScoped<IOtpAuthenticatorHelper, OtpNetOtpAuthenticatorHelper>();
+        TokenOptions tokenOptions2 = tokenOptions;
+        services.AddScoped<ITokenHelper<TUserId, TOperationClaimId, TRefreshTokenId>, JwtHelper<TUserId, TOperationClaimId, TRefreshTokenId>>((IServiceProvider _) => new JwtHelper<TUserId, TOperationClaimId, TRefreshTokenId>(tokenOptions2));
         return services;
     }
 

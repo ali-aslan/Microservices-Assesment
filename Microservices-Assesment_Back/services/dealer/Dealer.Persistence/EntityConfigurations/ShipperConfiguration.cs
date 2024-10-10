@@ -27,5 +27,31 @@ public class ShipperConfiguration: IEntityTypeConfiguration<Shipper>
         builder.HasIndex(indexExpression: b => b.Name, name: "UK_Shippers_Name").IsUnique();
 
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
+
+        builder.HasData(_seeds);
     }
-}
+
+
+    private IEnumerable<Shipper> _seeds
+    {
+        get
+        {
+            return new List<Shipper>
+            {
+                new Shipper
+                {
+                    Id = Guid.Parse("B19B03B2-FE50-4C30-BEAC-41A3C648E721"), // Shipper 1
+                    Name = "Global Express",
+                    Phone = "+123456789"
+                },
+                new Shipper
+                {
+                    Id = Guid.Parse("A5A07AAB-706B-4A30-97A5-25B0D37BD6AB"), // Shipper 2
+                    Name = "FastTrack Logistics",
+                    Phone = "+987654321"
+                }
+            };
+        }
+    }
+
+    }

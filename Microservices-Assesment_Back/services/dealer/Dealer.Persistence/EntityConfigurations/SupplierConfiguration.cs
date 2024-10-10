@@ -28,5 +28,31 @@ public class SupplierConfiguration: IEntityTypeConfiguration<Supplier>
         builder.HasIndex(indexExpression: b => b.Name, name: "UK_Suppliers_Name").IsUnique();
 
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
+
+        builder.HasData(_seeds);
+    }
+
+    private IEnumerable<Supplier> _seeds
+    {
+        get
+        {
+            return new List<Supplier>
+            {
+                new Supplier
+                {
+                    Id = Guid.Parse("5D7DDF1B-1F2F-4A72-AC0A-0106E2912B34"), // Supplier 1
+                    Name = "TechSource Supplies",
+                    ContactName = "Alice Johnson",
+                    Phone = "+1122334455"
+                },
+                new Supplier
+                {
+                    Id = Guid.Parse("E462E1A5-B32C-44D3-A74B-FA60C1E76D89"), // Supplier 2
+                    Name = "HomeGoods Wholesale",
+                    ContactName = "Bob Williams",
+                    Phone = "+9988776655"
+                }
+            };
+        }
     }
 }

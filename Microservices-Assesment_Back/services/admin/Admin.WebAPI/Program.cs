@@ -41,7 +41,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)//Admi
             ValidateIssuer = true,
             ValidateAudience = true,
             ValidateLifetime = true,
-            ValidAudience = "microservices@test.com",
+            ValidAudience = "mehmet.ali.aslan.abc@gmail.com",
             ValidIssuer = "mehmet.ali.aslan.abc@gmail.com",
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey("StrongAndSecretKeyStrongAndSecretKeyStrongAndSecretKeyStrongAndSecretKey")
